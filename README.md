@@ -22,54 +22,26 @@ python3 starthere.py
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+Clone the REPO, then run python3 starthere.py
 
 ```
-Give the example
+python3 starthere.py
+#####################################
+1) to start an existing project
+2) to stop a running project
+3) to create a new project
+4) to remove a project !!WARNING!!
+5) to re-deploy a project
+6) Install infrastructure
+7) Quit
+#####################################
+What would you like to do?
 ```
 
-And repeat
+First, make sure you have Docker running, then run option 6 to create the swarm, internal and proxy networks and to set up the dockerhub login.
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
+You will need to know your dockerhub login details as they now require authentication to pull repositories.
 
 ## Authors
 
 * **Luke Adams** - *Initial work*
-
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc

@@ -1,0 +1,53 @@
+
+version: "3"
+
+services:
+  app:
+    image: 127.0.0.1:5000/$pjn:app
+    build:
+      context: ./images/nginx/
+      dockerfile: Dockerfile
+    networks:
+      - proxy
+      - backend
+    depends_on:
+      - phpfpm
+    volumes:
+      - ./src:/var/www/html:cached
+      - ./images/nginx/conf/magento1.conf:/etc/nginx/conf.d/default.conf:cached
+      - ./images/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:cached
+    deploy:
+      replicas: 1
+      labels:
+        - com.df.notify=true
+        - com.df.distribute=true
+        - com.df.port=8000
+        - com.df.serviceDomain=$pjn.local
+      restart_policy:
+        condition: on-failure
+
+  phpfpm:
+    image: 127.0.0.1:5000/$pjn:phpfpm
+    build:
+      context: ./images/php/
+      dockerfile: Dockerfile
+    networks:
+      - backend
+    depends_on:
+      - db
+    volumes:
+      - ./src:/var/www/html:cached
+
+  db:
+    image: mariadb:latest
+    env_file: env/db.env
+    networks:
+      - backend
+    volumes:
+      - ./db:/var/lib/mysql:cached
+
+networks:
+  backend:
+  proxy:
+    external:
+      name: proxy

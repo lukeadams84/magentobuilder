@@ -1,0 +1,7 @@
+#!/bin/bash
+[ -z "$$1" ] && echo "Please specify a CLI command (ex. ls)" && exit
+
+# Get ID of current project phpfpm container
+id="$$(docker container ps -f name=$pjnfpm --format '{{.ID}}')"
+
+docker exec $$id "$$@"

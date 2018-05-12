@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Get ID of current project phpfpm container
+id="$$(docker container ps -f name=$pjnfpm --format '{{.ID}}')"
+db="$$(docker container ps -f name=$pjndb --format '{{.ID}}')"
+echo "Waiting for DB to start..."
+sleep 30
+
+docker exec $$id php /var/www/html/bin/magento setup:install \
+  --db-host=db \
+  --db-name=magento \
+  --db-user=magento \
+  --db-password=magento \
+  --base-url=http://$pjn.local/ \
+  --admin-firstname=Admin \
+  --admin-lastname=User \
+  --admin-email=dummy@gmail.com \
+  --admin-user=magento2 \
+  --admin-password=magento2 \
+  --language=en_GB \
+  --currency=GBP \
+  --session-save=db \
+  --timezone=Europe/London \
+  --use-rewrites=1
+
+#./bin/fixperms
+
+echo "Turning on developer mode.."
+docker exec $$id php /var/www/html/bin/magento deploy:mode:set developer
+
+echo "Running reindex.."
+docker exec $$id php /var/www/html/bin/magento indexer:reindex
+
+echo "Enable varnish.."
+docker exec $$db mysql -u magento -pmagento -D magento -e "INSERT INTO core_config_data ( scope, scope_id, path, value ) VALUES ( 'default', '0', 'system/full_page_cache/caching_application', '2') ON DUPLICATE KEY UPDATE value = 2;"

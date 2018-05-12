@@ -1,6 +1,6 @@
 # Cross Platform Magento 1/2 Docker Environment Builder
 
-Python3 Project to allow quick build of custom Magento environments for Docker Swarm.
+Python3 Project to allow quick build of custom Magento environments for Docker Swarm. Projects are created automatically, and need to stay in the projects folder for the automated start, stop, rebuild etc to work. 
 
 ## Getting Started
 

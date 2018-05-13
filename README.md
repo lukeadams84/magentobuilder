@@ -1,6 +1,6 @@
 # Cross Platform Magento 1/2 Docker Environment Builder
 
-Python3 Project to allow quick build of custom Magento environments for Docker Swarm. Projects are created automatically, and need to stay in the projects folder for the automated start, stop, rebuild etc to work. 
+Python3 Project to allow quick build of custom Magento environments for Docker Swarm. Projects are created automatically, and need to stay in the projects folder for the automated start, stop, rebuild etc to work.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ Clone the repository into your chosen location. This is recommended to be somewh
 
 ### Prerequisites
 
-You need to have the latest Docker CE installed for Windows, Mac or Linux. And Python3 installed into your PATH. Depending on how you installed Python, it might be available as python script or as python3 script
+You need to have the latest Docker CE installed for Windows, Mac or Linux. And Python3 installed into your PATH. Depending on how you installed Python, it might be available as python script or as python3 script. You can get it here: https://www.python.org/downloads/
 
 ```
 Python 3 installed as python

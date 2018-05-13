@@ -37,6 +37,7 @@ if os.name == "posix":
     subprocess.call(["./scripts/unix-managehosts.sh", "remove", projectName + ".local"])
 else:
     system = "Windows"
+    subprocess.call(["./scripts/win-manageghosts.ps1", "remove", projectName + ".local"])
 
 print("Project Name: " + projectName)
 print("Removing Project " + projectName)

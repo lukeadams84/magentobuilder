@@ -76,6 +76,7 @@ if os.name == "posix":
     call(["./scripts/unix-managehosts.sh", "add", projectName + ".local"])
 else:
     system = "Windows"
+    call(["./scripts/win-manageghosts.ps1", "add", "127.0.0.1", projectName + ".local"])
 
 print("Project Name: " + projectName)
 print("Magento Version: " + magentoVersion)
